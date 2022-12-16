@@ -1,26 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <!--
+      Met @click.prevent bind je een event listener voor klik functies en gebruik je automatisch event.preventDefault();
+    -->
+    <button class="button" @click.prevent="toggleText">Klik op mij</button>
+
+
+    <!--
+      Met v-if kan je conditioneel renderen. Het maakt gebruik van javascript's if functie
+      Dus als de waarde van this.showText true is laat hij de div met hallo wereld erin zien.
+      Als deze false is niet en wordt de markup uit de dom verwijdert
+    -->
+    <div v-if="showText">
+      Hallo Wereld
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  methods: {
+    toggleText() {
+      if (this.showText === false) {
+        this.showText = true
+      } else {
+        this.showText = false;
+      }
+    }
+  },
+  data() {
+    return {
+      showText: false
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  .container {
+    display: flex;
+  }
+
+  .container button {
+    border: 1px solid black;
+    color: white;
+    background: red;
+  }
 </style>
